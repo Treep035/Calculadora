@@ -39,17 +39,14 @@ public class NumericDocumentFilter extends DocumentFilter {
     }
 
     private boolean isNumeric(String text) {
-        // Allow empty text
         if (text.isEmpty()) {
             return true;
         }
 
-        // Allow only one decimal point
         if (text.chars().filter(ch -> ch == '.').count() > 1) {
             return false;
         }
 
-        // Check if it's a valid double or if it ends with a decimal point
         try {
             if (text.endsWith(".")) {
                 Double.parseDouble(text + "0");
